@@ -1,3 +1,5 @@
+package test.task.map;
+
 import java.util.function.Consumer;
 
 public interface CustomMap<V> {

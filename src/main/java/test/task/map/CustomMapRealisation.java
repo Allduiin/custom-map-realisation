@@ -1,8 +1,10 @@
+package test.task.map;
+
 import java.util.function.Consumer;
 
-public class CustomMapRealisation<V> implements CustomMap<V>{
+public class CustomMapRealisation<V> implements CustomMap<V> {
 
-    CustomMapRealisation(){
+    public CustomMapRealisation(){
 
     }
 
