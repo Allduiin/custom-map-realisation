@@ -1,6 +1,11 @@
 import java.util.function.Consumer;
 
-public class CustomMapRealisation<V> {
+public class CustomMapRealisation<V> implements CustomMap<V>{
+
+    CustomMapRealisation(){
+
+    }
+
     public void put(Long key, V value) {
     }
 
