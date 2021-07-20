@@ -70,13 +70,13 @@ public class CustomMapTest {
         CustomMap<Integer> customMap = new CustomMapImpl<>();
         customMap.put(null, FIRST_INTEGER);
         Integer firstActualValue = customMap.getValue(null);
-        Assert.assertEquals("Test failed! HashMap expects to contain "+ FIRST_INTEGER +" values, but was "
+        Assert.assertEquals("Test failed! HashMap expects to contain " + FIRST_INTEGER + " values, but was "
                 + firstActualValue, FIRST_INTEGER, firstActualValue);
         Assert.assertEquals("Test failed! The size isn't correct. Expected 1 but was "
                 + customMap.getSize(), 1, customMap.getSize());
         customMap.put(null, SECOND_INTEGER);
         Integer secondActualValue = customMap.getValue(null);
-        Assert.assertEquals("Test failed! HashMap expects to contain "+ SECOND_INTEGER +" values, but was "
+        Assert.assertEquals("Test failed! HashMap expects to contain " + SECOND_INTEGER + " values, but was "
                 + secondActualValue, SECOND_INTEGER, secondActualValue);
         Assert.assertEquals("Test failed! The size isn't correct. Expected 1 but was "
                 + customMap.getSize(), 1, customMap.getSize());
@@ -104,7 +104,14 @@ public class CustomMapTest {
         CustomMap<Integer> customMap = new CustomMapImpl<>();
         customMap.put(KEY_1, FIRST_INTEGER);
         customMap.put(KEY_2, SECOND_INTEGER);
-        customMap.forEach((i) -> i*= 10);
-
+        customMap.forEach((i) -> i *= 10);
+        Integer firstActualValue = customMap.getValue(KEY_1);
+        Integer secondActualValue = customMap.getValue(KEY_2);
+        Integer expected1 = FIRST_INTEGER * 10;
+        Integer expected2 = SECOND_INTEGER * 10;
+        Assert.assertEquals("Test failed! HashMap expects to contain " + expected1 + " values, but was "
+                + firstActualValue, expected1, firstActualValue);
+        Assert.assertEquals("Test failed! HashMap expects to contain " + expected2 + " values, but was "
+                + secondActualValue, expected1, secondActualValue);
     }
 }
