@@ -3,6 +3,8 @@ package test.task.map;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 public class CustomMapTest {
     private final Long KEY_1 = -100L;
     private final Long KEY_2 = 20L;
@@ -34,12 +36,12 @@ public class CustomMapTest {
         Car firstActualValue = customMap.getValue(KEY_1);
         Car secondActualValue = customMap.getValue(KEY_2);
         Car thirdActualValue = customMap.getValue(KEY_3);
-        Assert.assertEquals("Test failed! HashMap expects to contain " + FIRST_CAR + " values, but was "
-                + firstActualValue, FIRST_CAR, firstActualValue);
-        Assert.assertEquals("Test failed! HashMap expects to contain " + SECOND_CAR + " values, but was "
-                + secondActualValue, SECOND_CAR, secondActualValue);
-        Assert.assertEquals("Test failed! HashMap expects to contain " + THIRD_CAR + " values, but was "
-                + thirdActualValue, THIRD_CAR, thirdActualValue);
+        Assert.assertEquals("Test failed! HashMap expects to contain " + FIRST_CAR
+                + " values, but was " + firstActualValue, FIRST_CAR, firstActualValue);
+        Assert.assertEquals("Test failed! HashMap expects to contain " + SECOND_CAR
+                + " values, but was " + secondActualValue, SECOND_CAR, secondActualValue);
+        Assert.assertEquals("Test failed! HashMap expects to contain " + THIRD_CAR
+                + " values, but was " + thirdActualValue, THIRD_CAR, thirdActualValue);
     }
 
     @Test
@@ -57,12 +59,12 @@ public class CustomMapTest {
         Car firstActualValue = customMap.getValue(KEY_1);
         Car secondActualValue = customMap.getValue(KEY_2);
         Car thirdActualValue = customMap.getValue(KEY_3);
-        Assert.assertEquals("Test failed! HashMap expects to contain " + FIRST_CAR + " values, but was "
-                + firstActualValue, FIRST_CAR, firstActualValue);
-        Assert.assertEquals("Test failed! HashMap expects to contain " + SECOND_CAR + " values, but was "
-                + secondActualValue, SECOND_CAR, secondActualValue);
-        Assert.assertEquals("Test failed! HashMap expects to contain " + THIRD_CAR + " values, but was "
-                + thirdActualValue, THIRD_CAR, thirdActualValue);
+        Assert.assertEquals("Test failed! HashMap expects to contain " + FIRST_CAR
+                + " values, but was " + firstActualValue, FIRST_CAR, firstActualValue);
+        Assert.assertEquals("Test failed! HashMap expects to contain " + SECOND_CAR
+                + " values, but was " + secondActualValue, SECOND_CAR, secondActualValue);
+        Assert.assertEquals("Test failed! HashMap expects to contain " + THIRD_CAR
+                + " values, but was " + thirdActualValue, THIRD_CAR, thirdActualValue);
     }
 
     @Test
@@ -70,14 +72,14 @@ public class CustomMapTest {
         CustomMap<Integer> customMap = new CustomMapImpl<>();
         customMap.put(null, FIRST_INTEGER);
         Integer firstActualValue = customMap.getValue(null);
-        Assert.assertEquals("Test failed! HashMap expects to contain " + FIRST_INTEGER + " values, but was "
-                + firstActualValue, FIRST_INTEGER, firstActualValue);
+        Assert.assertEquals("Test failed! HashMap expects to contain " + FIRST_INTEGER
+                + " values, but was " + firstActualValue, FIRST_INTEGER, firstActualValue);
         Assert.assertEquals("Test failed! The size isn't correct. Expected 1 but was "
                 + customMap.getSize(), 1, customMap.getSize());
         customMap.put(null, SECOND_INTEGER);
         Integer secondActualValue = customMap.getValue(null);
-        Assert.assertEquals("Test failed! HashMap expects to contain " + SECOND_INTEGER + " values, but was "
-                + secondActualValue, SECOND_INTEGER, secondActualValue);
+        Assert.assertEquals("Test failed! HashMap expects to contain " + SECOND_INTEGER
+                + " values, but was " + secondActualValue, SECOND_INTEGER, secondActualValue);
         Assert.assertEquals("Test failed! The size isn't correct. Expected 1 but was "
                 + customMap.getSize(), 1, customMap.getSize());
     }
@@ -104,14 +106,12 @@ public class CustomMapTest {
         CustomMap<Integer> customMap = new CustomMapImpl<>();
         customMap.put(KEY_1, FIRST_INTEGER);
         customMap.put(KEY_2, SECOND_INTEGER);
-        customMap.forEach((i) -> i *= 10);
-        Integer firstActualValue = customMap.getValue(KEY_1);
-        Integer secondActualValue = customMap.getValue(KEY_2);
-        Integer expected1 = FIRST_INTEGER * 10;
-        Integer expected2 = SECOND_INTEGER * 10;
-        Assert.assertEquals("Test failed! HashMap expects to contain " + expected1 + " values, but was "
-                + firstActualValue, expected1, firstActualValue);
-        Assert.assertEquals("Test failed! HashMap expects to contain " + expected2 + " values, but was "
-                + secondActualValue, expected2, secondActualValue);
+        AtomicReference<Integer> sum = new AtomicReference<>(0);
+        customMap.forEach((v) -> sum.updateAndGet(v1 -> v1 + v));
+        Integer actualSum = sum.get();
+        Integer expected = FIRST_INTEGER + SECOND_INTEGER;
+        Assert.assertEquals("Test failed! HashMap expects to sum 2 integers ( " + FIRST_INTEGER
+                + " and " + SECOND_INTEGER + ", but was "
+                + actualSum, expected, actualSum);
     }
 }
