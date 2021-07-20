@@ -12,8 +12,6 @@ public class CustomMapTest {
     private final Car THIRD_CAR = new Car(300, "Tesla");
     private final Integer FIRST_INTEGER = 3;
     private final Integer SECOND_INTEGER = 5;
-    private final Integer THIRD_INTEGER = 1;
-    private static CustomMap<Car> customMap;
 
 
     @Test
@@ -89,7 +87,6 @@ public class CustomMapTest {
         CustomMap<Integer> customMap = new CustomMapImpl<>();
         customMap.put(KEY_1, FIRST_INTEGER);
         customMap.put(KEY_2, SECOND_INTEGER);
-        customMap.put(KEY_3, THIRD_INTEGER);
         customMap.clear();
         Assert.assertEquals("Test failed! The size isn't correct. Map was not cleared because have size of "
                 + customMap.getSize(), 0, customMap.getSize());
