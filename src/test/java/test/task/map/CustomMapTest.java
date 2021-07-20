@@ -112,6 +112,6 @@ public class CustomMapTest {
         Assert.assertEquals("Test failed! HashMap expects to contain " + expected1 + " values, but was "
                 + firstActualValue, expected1, firstActualValue);
         Assert.assertEquals("Test failed! HashMap expects to contain " + expected2 + " values, but was "
-                + secondActualValue, expected1, secondActualValue);
+                + secondActualValue, expected2, secondActualValue);
     }
 }
