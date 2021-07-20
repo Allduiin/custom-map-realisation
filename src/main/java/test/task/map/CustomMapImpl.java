@@ -73,12 +73,14 @@ public class CustomMapImpl<V> implements CustomMap<V> {
     }
 
     public final void forEach(Consumer<? super V> cons) {
-        if (cons == null)
+        if (cons == null) {
             throw new NullPointerException();
+        }
         if (size > 0 && nodes != null) {
             for (Node<V> node : nodes) {
-                for (; node != null; node = node.next)
+                for (; node != null; node = node.next) {
                     cons.accept(node.value);
+                }
             }
         }
     }
