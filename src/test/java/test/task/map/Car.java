@@ -7,5 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class Car {
     private int maxSpeed;
-    private String model;
+    private String brand;
 }
