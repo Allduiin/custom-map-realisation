@@ -1,6 +1,13 @@
+package test.task.map;
+
 import java.util.function.Consumer;
 
-public class CustomMapRealisation<V> {
+public class CustomMapImpl<V> implements CustomMap<V> {
+
+    public CustomMapImpl(){
+
+    }
+
     public void put(Long key, V value) {
     }
 
